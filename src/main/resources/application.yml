@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: development
+
+---
+spring:
+  application:
+    name: case3
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scrapper
+    username: postgres
+    password: postgres
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+
+management:
+  address: 127.0.0.1
+  port: 8080
+  endpoint:
+    beans:
+      enabled: true
