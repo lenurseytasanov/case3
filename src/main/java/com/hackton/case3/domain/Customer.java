@@ -14,6 +14,15 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Customer(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    private String firstname;
+
+    private String lastname;
+
     @OneToMany(mappedBy = "customer")
     private Set<Project> projects;
 }
