@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,14 +17,20 @@ public class Task {
 
     private String text;
 
+    @ManyToOne
+    @JoinColumn(name="employee_id", nullable=false)
     private Employee employee;
 
+    @ManyToOne
+    @JoinColumn(name="project_id", nullable=false)
     private Project project;
 
+    @ManyToOne
+    @JoinColumn(name="parent_task_id", nullable=true)
     private Task parent;
 
     @OneToMany(mappedBy = "parent")
-    private Set<Task> children;
+    private Set<Task> children = new HashSet<>();
 
     private String state;
 

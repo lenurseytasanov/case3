@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,9 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy="cart")
-    private Set<Project> projects;
+    @OneToMany(mappedBy="team")
+    private Set<Project> projects = new HashSet<>();
+
+    @OneToMany(mappedBy = "team")
+    private Set<Employee> employees = new HashSet<>();
 }
