@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/task")
@@ -19,6 +20,11 @@ public class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<TaskResponse>> getAll() {
+        return ResponseEntity.ok(taskService.getAllTasks());
+    }
 
     @PostMapping(path = "/new")
     public ResponseEntity<Long> createTask(@RequestBody TaskRequest taskRequest) {

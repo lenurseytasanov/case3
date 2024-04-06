@@ -45,11 +45,14 @@ create table if not exists Task
     parent_task_id bigint,
     state text not null,
     stage text not null,
-    priority bigint not null,
+    priority text not null,
     type text not null,
-    start_date timestamp with time zone not null,
+    start_date timestamp with time zone,
     primary key (id),
     foreign key (employee_id) references Employee(id),
     foreign key (project_id) references Project(id),
     foreign key (parent_task_id) references Task(id)
 );
+
+CREATE SEQUENCE custom_sequence
+    START WITH 1000; -- Set your desired initial value
