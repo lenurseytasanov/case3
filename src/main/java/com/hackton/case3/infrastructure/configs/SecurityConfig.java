@@ -38,6 +38,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                                .requestMatchers("/v2/api-docs").permitAll()
                                 .anyRequest().authenticated()
 
                 )

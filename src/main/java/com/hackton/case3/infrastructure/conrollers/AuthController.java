@@ -5,13 +5,11 @@ import com.hackton.case3.infrastructure.dto.AuthRequest;
 import com.hackton.case3.infrastructure.dto.JwtAuthResponse;
 import com.hackton.case3.infrastructure.dto.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/auth")
+@CrossOrigin
 public class AuthController {
 
     @Autowired

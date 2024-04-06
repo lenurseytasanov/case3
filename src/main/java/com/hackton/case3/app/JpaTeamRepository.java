@@ -12,6 +12,4 @@ import java.util.List;
 
 @Repository
 public interface JpaTeamRepository extends JpaRepository<Team, Long> {
-    @Query("SELECT u FROM Employee u JOIN u.team t WHERE t.id = :teamId")
-    List<Employee> findByTeamId(@Param("teamId") Long teamId);
 }

@@ -28,8 +28,8 @@ public class AuthService {
     public JwtAuthResponse signUp(SignUpRequest request) {
 
         Employee user = new Employee(
-                request.getFirstname(),
-                request.getLastname(),
+                request.getFirstName(),
+                request.getLastName(),
                 request.getUsername(),
                 passwordEncoder.encode(request.getPassword())
         );
