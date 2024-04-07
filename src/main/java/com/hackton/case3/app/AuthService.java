@@ -2,9 +2,9 @@ package com.hackton.case3.app;
 
 import com.hackton.case3.domain.Employee;
 import com.hackton.case3.infrastructure.JwtTokenUtil;
-import com.hackton.case3.infrastructure.dto.AuthRequest;
-import com.hackton.case3.infrastructure.dto.JwtAuthResponse;
-import com.hackton.case3.infrastructure.dto.SignUpRequest;
+import com.hackton.case3.infrastructure.dto.auth.AuthRequest;
+import com.hackton.case3.infrastructure.dto.auth.JwtAuthResponse;
+import com.hackton.case3.infrastructure.dto.auth.SignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

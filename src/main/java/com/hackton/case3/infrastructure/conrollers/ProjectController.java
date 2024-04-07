@@ -1,10 +1,8 @@
 package com.hackton.case3.infrastructure.conrollers;
 
 import com.hackton.case3.app.ProjectService;
-import com.hackton.case3.app.TeamService;
-import com.hackton.case3.domain.Project;
-import com.hackton.case3.infrastructure.dto.CustomerDto;
-import com.hackton.case3.infrastructure.dto.ProjectDto;
+import com.hackton.case3.infrastructure.dto.project.CustomerDto;
+import com.hackton.case3.infrastructure.dto.project.ProjectDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

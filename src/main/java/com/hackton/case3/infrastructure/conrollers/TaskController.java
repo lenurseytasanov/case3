@@ -1,12 +1,10 @@
 package com.hackton.case3.infrastructure.conrollers;
 
 import com.hackton.case3.app.TaskService;
-import com.hackton.case3.domain.Task;
 import com.hackton.case3.domain.enums.Stage;
 import com.hackton.case3.domain.enums.State;
-import com.hackton.case3.infrastructure.dto.TaskDto;
-import com.hackton.case3.infrastructure.dto.TaskRequest;
-import com.hackton.case3.infrastructure.dto.TaskResponse;
+import com.hackton.case3.infrastructure.dto.task.TaskRequest;
+import com.hackton.case3.infrastructure.dto.task.TaskResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

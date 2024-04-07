@@ -1,4 +1,4 @@
-package com.hackton.case3.app;
+package com.hackton.case3.app.repository;
 
 import com.hackton.case3.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure.dto;
+package com.hackton.case3.infrastructure.dto.project;
 
 import com.hackton.case3.domain.enums.Priority;
 import com.hackton.case3.domain.enums.Stage;
@@ -10,16 +10,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 
 @Data
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectTaskResponse {
+public class TaskDto {
 
     private Long id;
-    private String name;
-    private TeamDto team;
-    private CustomerDto customer;
+
+    private String text;
+
+    private EmployeeDto employee;
+
+    private State state;
+
+    private Stage stage;
+
+    private Priority priority;
+
+    private Type type;
+
+    private OffsetDateTime startDate;
 }

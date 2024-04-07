@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure.dto;
+package com.hackton.case3.infrastructure.dto.task;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

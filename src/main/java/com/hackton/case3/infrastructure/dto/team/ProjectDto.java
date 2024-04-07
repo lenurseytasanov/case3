@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure.dto;
+package com.hackton.case3.infrastructure.dto.team;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,12 @@ import java.util.List;
 
 @Data
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProjectDto {
 
     private Long id;
     private String name;
-    private TeamDto team;
     private CustomerDto customer;
     private List<TaskDto> tasks;
 }

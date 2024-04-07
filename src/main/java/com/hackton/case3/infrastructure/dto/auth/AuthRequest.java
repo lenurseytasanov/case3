@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure.dto;
+package com.hackton.case3.infrastructure.dto.auth;
 
 import lombok.Data;
 import lombok.Getter;

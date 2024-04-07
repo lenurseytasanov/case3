@@ -1,11 +1,19 @@
 package com.hackton.case3.app;
 
+import com.hackton.case3.app.repository.JpaEmployeeRepository;
+import com.hackton.case3.app.repository.JpaProjectRepository;
+import com.hackton.case3.app.repository.JpaTaskRepository;
 import com.hackton.case3.domain.Employee;
 import com.hackton.case3.domain.Project;
 import com.hackton.case3.domain.Task;
 import com.hackton.case3.domain.enums.Stage;
 import com.hackton.case3.domain.enums.State;
-import com.hackton.case3.infrastructure.dto.*;
+import com.hackton.case3.infrastructure.dto.project.CustomerDto;
+import com.hackton.case3.infrastructure.dto.project.TeamDto;
+import com.hackton.case3.infrastructure.dto.task.ProjectDto;
+import com.hackton.case3.infrastructure.dto.task.TaskRequest;
+import com.hackton.case3.infrastructure.dto.task.TaskResponse;
+import com.hackton.case3.infrastructure.dto.team.EmployeeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,14 +70,14 @@ public class TaskService {
                     task.getProject().getCustomer().getLastname());
         }
 
-        ProjectTaskResponse projectTaskResponse = new ProjectTaskResponse(
+        ProjectDto projectDto = new ProjectDto(
                 task.getProject().getId(), task.getProject().getName(), teamDto, customerDto
         );
 
 
         return new TaskResponse(task.getId(), task.getText(),
                 new EmployeeDto(task.getEmployee().getUsername(), task.getEmployee().getFirstname(), task.getEmployee().getLastname()),
-                projectTaskResponse, task.getState(), task.getStage(), task.getPriority(), task.getType(), task.getStartDate());
+                projectDto, task.getState(), task.getStage(), task.getPriority(), task.getType(), task.getStartDate());
     }
 
     public List<TaskResponse> getAllTasks() {

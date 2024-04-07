@@ -1,5 +1,6 @@
 package com.hackton.case3.app;
 
+import com.hackton.case3.app.repository.JpaEmployeeRepository;
 import com.hackton.case3.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

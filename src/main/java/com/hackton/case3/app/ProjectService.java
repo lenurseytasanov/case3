@@ -1,10 +1,16 @@
 package com.hackton.case3.app;
 
+import com.hackton.case3.app.repository.JpaCustomerRepository;
+import com.hackton.case3.app.repository.JpaProjectRepository;
+import com.hackton.case3.app.repository.JpaTeamRepository;
 import com.hackton.case3.domain.Customer;
-import com.hackton.case3.domain.Employee;
 import com.hackton.case3.domain.Project;
 import com.hackton.case3.domain.Team;
-import com.hackton.case3.infrastructure.dto.*;
+import com.hackton.case3.infrastructure.dto.project.CustomerDto;
+import com.hackton.case3.infrastructure.dto.project.ProjectDto;
+import com.hackton.case3.infrastructure.dto.project.TaskDto;
+import com.hackton.case3.infrastructure.dto.project.TeamDto;
+import com.hackton.case3.infrastructure.dto.team.EmployeeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +25,8 @@ public class ProjectService {
     @Autowired
     private JpaTeamRepository teamRepository;
 
-    @Autowired JpaCustomerRepository customerRepository;
+    @Autowired
+    JpaCustomerRepository customerRepository;
 
     public ProjectDto getProject(Long id) {
         Project project = projectRepository.findById(id).orElseThrow();

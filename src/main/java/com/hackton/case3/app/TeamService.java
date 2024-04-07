@@ -1,9 +1,12 @@
 package com.hackton.case3.app;
 
-import com.hackton.case3.domain.Employee;
-import com.hackton.case3.domain.Project;
+import com.hackton.case3.app.repository.JpaTeamRepository;
 import com.hackton.case3.domain.Team;
-import com.hackton.case3.infrastructure.dto.*;
+import com.hackton.case3.infrastructure.dto.project.CustomerDto;
+import com.hackton.case3.infrastructure.dto.project.TaskDto;
+import com.hackton.case3.infrastructure.dto.team.EmployeeDto;
+import com.hackton.case3.infrastructure.dto.team.ProjectDto;
+import com.hackton.case3.infrastructure.dto.team.TeamDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +23,13 @@ public class TeamService {
         return team.getId();
     }
 
-    public TeamResponse getTeam(Long id) {
+    public TeamDto getTeam(Long id) {
         List<EmployeeDto> employees = teamRepository.findById(id)
                 .orElseThrow().getEmployees()
                 .stream()
                 .map(employee -> new EmployeeDto(employee.getUsername(), employee.getFirstname(), employee.getLastname()))
                 .toList();
-        List<ProjectResponse> projects = teamRepository.findById(id)
+        List<ProjectDto> projects = teamRepository.findById(id)
                 .orElseThrow().getProjects()
                 .stream()
                 .map(project -> {
@@ -43,14 +46,14 @@ public class TeamService {
                                     ), task.getState(), task.getStage(), task.getPriority(), task.getType(), task.getStartDate()))
                             .toList();
 
-                    return new ProjectResponse(project.getId(), project.getName(), customer, tasks);
+                    return new ProjectDto(project.getId(), project.getName(), customer, tasks);
                         }
                 )
                 .toList();
-        return new TeamResponse(id, employees, projects);
+        return new TeamDto(id, employees, projects);
     }
 
-    public List<TeamResponse> getAllTeams() {
+    public List<TeamDto> getAllTeams() {
         return teamRepository.findAll().stream()
                 .map(team -> getTeam(team.getId()))
                 .toList();

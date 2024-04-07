@@ -1,4 +1,4 @@
-package com.hackton.case3.app;
+package com.hackton.case3.app.repository;
 
 import com.hackton.case3.domain.Employee;
 import com.hackton.case3.domain.Project;

@@ -1,20 +1,15 @@
-package com.hackton.case3.infrastructure.dto;
+package com.hackton.case3.infrastructure.dto.team;
 
-import com.hackton.case3.domain.Employee;
-import com.hackton.case3.domain.Project;
 import com.hackton.case3.domain.enums.Priority;
 import com.hackton.case3.domain.enums.Stage;
 import com.hackton.case3.domain.enums.State;
 import com.hackton.case3.domain.enums.Type;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
-
-import static jakarta.persistence.EnumType.STRING;
 
 @Data
 @Getter
