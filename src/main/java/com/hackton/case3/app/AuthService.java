@@ -1,10 +1,6 @@
 package com.hackton.case3.app;
 
 import com.hackton.case3.domain.Employee;
-import com.hackton.case3.infrastructure.JwtTokenUtil;
-import com.hackton.case3.infrastructure.dto.auth.AuthRequest;
-import com.hackton.case3.infrastructure.dto.auth.JwtAuthResponse;
-import com.hackton.case3.infrastructure.dto.auth.SignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,47 +10,39 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+
     private final UserService userService;
-    private final JwtTokenUtil jwtTokenUtil;
+
+    private final JwtService jwtService;
+
     private final PasswordEncoder passwordEncoder;
+
     private final AuthenticationManager authenticationManager;
 
-    /**
-     * Регистрация пользователя
-     *
-     * @param request данные пользователя
-     * @return токен
-     */
-    public JwtAuthResponse signUp(SignUpRequest request) {
+    public JwtDto signUp(Employee employee) {
 
         Employee user = new Employee(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getUsername(),
-                passwordEncoder.encode(request.getPassword())
+                employee.getFirstname(),
+                employee.getLastname(),
+                employee.getUsername(),
+                passwordEncoder.encode(employee.getPassword())
         );
 
         userService.create(user);
 
-        String jwt = jwtTokenUtil.generateToken(user);
-        return new JwtAuthResponse(jwt);
+        String jwt = jwtService.generateToken(user);
+        return new JwtDto(jwt);
     }
 
-    /**
-     * Аутентификация пользователя
-     *
-     * @param request данные пользователя
-     * @return токен
-     */
-    public JwtAuthResponse signIn(AuthRequest request) {
+    public JwtDto signIn(Employee employee) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
+                employee.getUsername(),
+                employee.getPassword()
         ));
 
-        Employee user = (Employee) userService.loadUserByUsername(request.getUsername());
+        Employee user = (Employee) userService.loadUserByUsername(employee.getUsername());
 
-        String jwt = jwtTokenUtil.generateToken(user);
-        return new JwtAuthResponse(jwt);
+        String jwt = jwtService.generateToken(user);
+        return new JwtDto(jwt);
     }
 }

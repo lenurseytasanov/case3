@@ -28,45 +28,18 @@ public class ProjectService {
     @Autowired
     JpaCustomerRepository customerRepository;
 
-    public ProjectDto getProject(Long id) {
-        Project project = projectRepository.findById(id).orElseThrow();
-
-        TeamDto team = null;
-        if (project.getTeam() != null) {
-            team = new TeamDto(
-                    project.getTeam().getId(),
-                    project.getTeam().getEmployees().stream()
-                            .map(employee -> new EmployeeDto(
-                                    employee.getUsername(), employee.getFirstname(), employee.getLastname()
-                            )).toList()
-            );
-        }
-
-        CustomerDto customer = null;
-        if (project.getCustomer() != null) {
-            customer = new CustomerDto(project.getCustomer().getFirstname(),
-                    project.getCustomer().getLastname());
-        }
-        List<TaskDto> tasks = project.getTasks().stream()
-                .map(task -> new TaskDto(
-                        task.getId(), task.getText(),
-                        new EmployeeDto(task.getEmployee().getUsername(),
-                                task.getEmployee().getFirstname(), task.getEmployee().getLastname()
-                        ), task.getState(), task.getStage(), task.getPriority(), task.getType(), task.getStartDate()))
-                .toList();
-
-        return new ProjectDto(project.getId(), project.getName(), team, customer, tasks);
+    public Project getProject(Long id) {
+        return projectRepository.findById(id).orElseThrow();
     }
 
-    public Long createProject(String name) {
-        Project project = projectRepository.save(new Project(name));
-        return project.getId();
+    public Project createProject(String name) {
+        return projectRepository.save(new Project(name));
     }
 
-    public Long addCustomer(Long id, CustomerDto customerDto) {
+    public Project addCustomer(Long id, Customer customer1) {
         Project project = projectRepository.findById(id).orElseThrow();
         Customer customer = customerRepository.save(
-                new Customer(customerDto.getFirstname(), customerDto.getLastname())
+                new Customer(customer1.getFirstname(), customer1.getLastname())
         );
 
         project.setCustomer(customer);
@@ -74,18 +47,18 @@ public class ProjectService {
 
         customerRepository.save(customer);
         project = projectRepository.save(project);
-        return project.getId();
+        return project;
     }
 
-    public Long addTeam(Long id, Long teamId) {
+    public Project addTeam(Long id, Team team1) {
         Project project = projectRepository.findById(id).orElseThrow();
-        Team team = teamRepository.findById(teamId).orElseThrow();
+        Team team = teamRepository.findById(team1.getId()).orElseThrow();
 
         project.setTeam(team);
         team.getProjects().add(project);
 
         teamRepository.save(team);
         project = projectRepository.save(project);
-        return project.getId();
+        return project;
     }
 }

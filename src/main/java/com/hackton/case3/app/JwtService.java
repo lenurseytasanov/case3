@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure;
+package com.hackton.case3.app;
 
 import com.hackton.case3.domain.Employee;
 import io.jsonwebtoken.Claims;
@@ -11,19 +11,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 @NoArgsConstructor
-public class JwtTokenUtil implements Serializable {
+public class JwtService implements Serializable {
 
     @Value("${jwt.secret}")
     private String secret;

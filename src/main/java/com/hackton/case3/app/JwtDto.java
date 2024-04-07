@@ -1,4 +1,4 @@
-package com.hackton.case3.infrastructure.dto.auth;
+package com.hackton.case3.app;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
-public class JwtAuthResponse {
+public class JwtDto {
 
     private String token;
 }
